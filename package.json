@@ -18,9 +18,20 @@
     "jest": "^23.6.0",
     "jest-junit": "^5.2.0"
   },
-  "jest" : {
-    "reporters": [
-      "jest-junit"
-    ]
+  "jest": {
+      "coverageReporters": [
+        "text",
+        "html",
+        "json-summary"
+      ],
+      "coverageDirectory": "coverage",
+      "coverageThreshold": {
+        "global": {
+          "branches": 75,
+          "functions": 80,
+          "lines": 80,
+          "statements": 80
+        }
+      }
   }
 }

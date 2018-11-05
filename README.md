@@ -3,6 +3,7 @@
 this project goal is to show number to a LCD screen
 
 ## Build Status
+(this is a example)
 - [![Build Status](https://jenkins.beebusiness.com/job/kcdscreen/job/master/badge/icon)](https://jenkins.beebusiness .com/blue/organizations/jenkins/lcdscreen)
 
 ## Getting Started
@@ -22,7 +23,7 @@ You will need to install the following software:
 A step by step that indicates how to get a development env running
 
 ```bash
-git clone 
+git clone git@github.com:Nas84/lcdscreen.git
 ```
 Then in the folder type
 ```bash
@@ -88,7 +89,7 @@ Please read [CONTRIBUTING.md](./contributing.md) for details on how to support t
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [releases on this repository](https://github.com/).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [releases on this repository](https://github.com/Nas84/lcdscreen/releases).
 
 ## Authors
 

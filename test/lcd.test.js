@@ -31,6 +31,30 @@ describe("LCD class", () => {
     })
 
     describe("show function", () => {
-        
+        let testedLcd;
+        beforeAll(() => {
+            testedLcd = new LCD(3,3);
+            
+        })
+
+        it("should show number expected", () => {
+            
+            process.stdout.write = jest.fn((data) => { return null; });
+
+            testedLcd.show([1,2,3]);
+            expect(process.stdout.write.mock.calls.length).toBe(12);
+        })
+
+        it("should raise an error", () => {
+            //redeclare for having a correct count of mock called
+            process.stdout.write = jest.fn((data) => { return null; });
+            // the function needs to be wrap to have the error caught and asserted
+            // details @ https://jestjs.io/docs/en/expect.html#tothrowerror
+            expect(() => { testedLcd.show([]) }).toThrowError("input lenght should be greater than zero");
+            expect(process.stdout.write.mock.calls.length).toBe(0);
+
+            expect(() => { testedLcd.show(null) }).toThrowError("null input provided");
+            expect(process.stdout.write.mock.calls.length).toBe(0);
+        })
     })
 })

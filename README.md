@@ -1,87 +1,96 @@
-# Project Title
+# LCD screen
 
-One Paragraph of project description goes here
+this project goal is to show number to a LCD screen
+
+## Build Status
+- [![Build Status](https://jenkins.beebusiness.com/job/kcdscreen/job/master/badge/icon)](https://jenkins.beebusiness .com/blue/organizations/jenkins/lcdscreen)
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You will need to install the following software:
 
-```
-Give examples
-```
+* Docker Engine >= 18.06.1-ce
+* node >= 10.13.0 (chose a LTS version for production)
+* npm  >= 5.0.0
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
+A step by step that indicates how to get a development env running
 
-Say what the step will be
-
+```bash
+git clone 
 ```
-Give the example
+Then in the folder type
+```bash
+# Install dependencies
+npm install
 ```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+We have several type of tests. The framework we used is Jest.
 
-### Break down into end to end tests
+here the command for running all of our unit tests
 
-Explain what these tests test and why
-
+```Bash
+# Run the test
+npm test
 ```
-Give an example
+if you need to run only a sub domain you can type 
+```Bash
+# Run the test
+npm test -- <pattern>
+```
+See details 
+
+### Executing the CLI
+
+In as bash shell, at the root of the folder type:
+```Bash
+#run the cli
+./bin/lcdscreen.js -s <number>
 ```
 
-### And coding style tests
+or you could do:
 
-Explain what these tests test and why
-
+```Bash
+#run the cli
+node ./bin/lcdscreen.js -s <number>
 ```
-Give an example
+
+### Break down into systems tests
+
+the system test executes the command from a shell.
+We so, use a shell test framework for executing the command cli as an user/jenkins will do. 
+
+First install it, download the file “shunit2” [zip](https://github.com/kward/shunit2/archive/v2.1.7.zip) and put it on your PATH somewhere. Then launch it by: 
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+chmod +x ./test/system/sys_tests.sh
+./test/system/sys_tests.sh
+```
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+ Our stack is build with :
+* [nodeJs](https://nodejs.org/en/) - The framework engine
+* [Npm](https://www.npmjs.com/) - Dependency Management
+* [Jest](https://jestjs.io/) - Testing framework for unit and integration
+* [Shunit2](https://github.com/kward/shunit2) - Testing framework for system testing
+* [Docker](https://www.docker.com/) - The deployment and runtime technology
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md](./contributing.md) for details on how to support the project, and the process for submitting pull requests to us.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [releases on this repository](https://github.com/).
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Nasser Srairi** - 
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc

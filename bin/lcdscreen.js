@@ -20,7 +20,7 @@ function main(input) {
         let lcdscreen = new LCD(3,3)
         
         // Check params
-
+        
         //Show
         if (lcdscreen.canShow(input)) {
             //split input into an array
@@ -33,8 +33,8 @@ function main(input) {
         }
         
     }
-    catch (errmsg) {
-        console.error(errmsg);
+    catch (err) {
+        console.error(err.message);
         process.exit(20);
     }
 }

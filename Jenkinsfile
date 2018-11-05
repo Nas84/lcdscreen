@@ -15,8 +15,8 @@ pipeline {
             steps {
                 echo 'Determine version number and build tag'
                     script {
-                        //Get the lastest version based on the changelog file
-                        
+                        // Idea: Get the lastest version based on the changelog file
+                        // 
                     }
             }
         }

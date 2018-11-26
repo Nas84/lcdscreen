@@ -148,8 +148,7 @@ pipeline {
                 }  
             }
         }
-    }
-     stage('deploy in pre dev') {
+        stage('deploy in pre dev') {
             steps {
                 echo 'deploying in predev'
                 echo 'starting smoke tests'
@@ -181,6 +180,7 @@ pipeline {
                 echo 'deploying in pre prod'
                 echo 'starting smoke tests'
             }
+    }
     }
     post {
         always {

@@ -13,10 +13,6 @@ pipeline {
         stage('Setup') {
             steps {
                 echo 'Determine version number and build tag'
-                    script {
-                        // Idea: Get the lastest version based on the changelog file
-                        // 
-                    }
             }
         }
         

@@ -149,6 +149,39 @@ pipeline {
             }
         }
     }
+     stage('deploy in pre dev') {
+            steps {
+                echo 'deploying in predev'
+                echo 'starting smoke tests'
+            }
+    }
+    
+    stage('Stress tests pre dev') {
+            steps {
+                echo 'deploying in predev'
+                echo 'starting smoke tests'
+            }
+    }
+    
+    stage('deploy in pre prod ') {
+            steps {
+                echo 'deploying in pre prod'
+                echo 'starting smoke tests'
+            }
+    }
+    
+    stage('deploy in prod ') {
+            steps {
+                
+                timeout(time: 10, unit: 'MINUTES') {
+                                env.RELEASE_NUMBER = input message: 'Do you want to deploy this service ?', ok: 'Release!',
+                                    parameters: [string(defaultValue: env.PACKAGE_VERSION, description: 'package version', name: 'version')]
+                }
+                
+                echo 'deploying in pre prod'
+                echo 'starting smoke tests'
+            }
+    }
     post {
         always {
             cleanWs()

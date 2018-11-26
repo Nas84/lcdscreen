@@ -172,11 +172,10 @@ pipeline {
     stage('deploy in prod ') {
             steps {
                 
-                timeout(time: 10, unit: 'MINUTES') {
-                                env.RELEASE_NUMBER = input message: 'Do you want to deploy this service ?', ok: 'Release!',
-                                    parameters: [string(defaultValue: env.PACKAGE_VERSION, description: 'package version', name: 'version')]
-                }
-                
+                input message: 'Do you want to deploy this service ?', ok: 'Release!',
+                      parameters: [string(defaultValue: env.PACKAGE_VERSION, description: 'package version', name: 'version')]
+
+               
                 echo 'deploying in pre prod'
                 echo 'starting smoke tests'
             }

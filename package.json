@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "jest --ci --coverage"
+    "test": "jest --ci --testResultsProcessor=jest-junit --coverage"
   },
   "author": "nasser@sogilis",
   "license": "MIT",

@@ -4,7 +4,7 @@ this project goal is to show number to a LCD screen
 
 ## Build Status
 (this is a example)
-- [![Build Status](https://jenkins.beebusiness.com/job/kcdscreen/job/master/badge/icon)](https://jenkins.beebusiness .com/blue/organizations/jenkins/lcdscreen)
+- [![Build Status](https://jenkins.beebusiness.com/job/kcdscreen/job/master/badge/icon)](https://jenkins.beebusiness.com/blue/organizations/jenkins/lcdscreen)
 
 ## Getting Started
 

@@ -38,7 +38,7 @@ pipeline {
                     }
                     post {
                         always {
-                            junit "artifacts/test-results.xml"
+                            junit "*.xml"
                             publishHTML([
                                 allowMissing: true, 
                                 alwaysLinkToLastBuild: false, 

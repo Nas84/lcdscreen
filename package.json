@@ -33,8 +33,5 @@
           "statements": 80
         }
       }
-  },
-  "jest-junit": {
-    "output": "./artifacts/test-results.xml"
   }
 }

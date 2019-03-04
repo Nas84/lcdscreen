@@ -19,6 +19,9 @@
     "jest-junit": "^5.2.0"
   },
   "jest": {
+      "reporters": [
+        "jest-junit"
+      ],
       "coverageReporters": [
         "text",
         "html",
@@ -32,6 +35,9 @@
           "lines": 80,
           "statements": 80
         }
+      },
+      "jest-junit": {
+        "output": "./artifacts/test-results.xml"
       }
   }
 }

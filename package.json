@@ -35,9 +35,9 @@
           "lines": 80,
           "statements": 80
         }
-      },
-      "jest-junit": {
-        "output": "./artifacts/test-results.xml"
       }
+  },
+  "jest-junit": {
+     "output": "./artifacts/test-results.xml"
   }
 }

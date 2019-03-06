@@ -94,7 +94,6 @@ pipeline {
             }
         }
         stage ("Publish")  {
-            when { branch 'master' }
             steps{
                 script {
                     def doPromote=true;
@@ -118,7 +117,7 @@ pipeline {
                         } 
 
                         withCredentials([usernamePassword(credentialsId:'jenkins',usernameVariable: 'USER', passwordVariable:'PASSWORD')]){
-                        sh '''                   
+                        echo '''                   
                             docker login docker.beebusiness.com:8085 --username $USER --password $PASSWORD
                             docker tag lcdscreen:latest docker.beebusiness.com:8085/lcdscreen:${RELEASE_NUMBER}
                             docker tag lcdscreen:latest docker.beebusiness.com:8085/lcdscreen:latest
@@ -127,7 +126,7 @@ pipeline {
                         
                         '''
                         if (isStable) {
-                        sh '''                   
+                        echo '''                   
                             docker login docker.beebusiness.com --username $USER --password $PASSWORD
                             docker tag lcdscreen:latest docker.beebusiness.com/lcdscreen:stable
                             docker push docker.beebusiness.com/lcdscreen:stable
@@ -138,7 +137,7 @@ pipeline {
                         echo "Create Git tag ${env.RELEASE_NUMBER}"
                         withCredentials ([
                            usernamePassword(credentialsId: 'jenkins-github', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASSWORD')])
-                              { sh '''
+                              { echo '''
                                 gitUrlWithCreds="$(echo "${GIT_URL}" | sed -e 's!://!://'${GIT_USER}:${GIT_PASSWORD}'@!')"
                                 git tag "${RELEASE_NUMBER}" "${GIT_COMMIT}"
                                 git push "${gitUrlWithCreds}" "${RELEASE_NUMBER}"

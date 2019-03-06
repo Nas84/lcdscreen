@@ -2,7 +2,6 @@
 pipeline {
     options {
         timestamps()
-        disableConcurrentBuilds()
     }
     agent any
     environment {
@@ -14,10 +13,6 @@ pipeline {
         stage('Setup') {
             steps {
                 echo 'Determine version number and build tag'
-                    script {
-                        // Idea: Get the lastest version based on the changelog file
-                        // 
-                    }
             }
         }
         
@@ -56,7 +51,7 @@ pipeline {
                         }
                     }
                 } // end Node.js testing
-        
+                
                 stage("Dockerfile lint") {
                     agent {
                         docker {
@@ -69,7 +64,9 @@ pipeline {
                 } // end Dockerfile lint
 
             } // end parallel            
-        }
+        } 
+        
+        
         stage("Build images") {
             steps {
                 sh '''
@@ -77,7 +74,7 @@ pipeline {
                 '''
             }
         }
-        stage ("System tests") {
+        stage ("System tests")  {
             agent {
                 docker {
                     image 'lcdscreen:latest'
@@ -92,12 +89,11 @@ pipeline {
                     unzip /tmp/v2.1.7.zip -d /usr/share
                 '''
                 //and run the test 
-                sh 'sh $WORKSPACE/test/system/sys_tests.sh'
+                sh 'sh $WORKSPACE/test/system/sys_test.sh'
                 
             }
         }
         stage ("Publish")  {
-            when { branch 'master' }
             steps{
                 script {
                     def doPromote=true;
@@ -121,7 +117,7 @@ pipeline {
                         } 
 
                         withCredentials([usernamePassword(credentialsId:'jenkins',usernameVariable: 'USER', passwordVariable:'PASSWORD')]){
-                        sh '''                   
+                        echo '''                   
                             docker login docker.beebusiness.com:8085 --username $USER --password $PASSWORD
                             docker tag lcdscreen:latest docker.beebusiness.com:8085/lcdscreen:${RELEASE_NUMBER}
                             docker tag lcdscreen:latest docker.beebusiness.com:8085/lcdscreen:latest
@@ -130,7 +126,7 @@ pipeline {
                         
                         '''
                         if (isStable) {
-                        sh '''                   
+                        echo '''                   
                             docker login docker.beebusiness.com --username $USER --password $PASSWORD
                             docker tag lcdscreen:latest docker.beebusiness.com/lcdscreen:stable
                             docker push docker.beebusiness.com/lcdscreen:stable
@@ -141,7 +137,7 @@ pipeline {
                         echo "Create Git tag ${env.RELEASE_NUMBER}"
                         withCredentials ([
                            usernamePassword(credentialsId: 'jenkins-github', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASSWORD')])
-                              { sh '''
+                              { echo '''
                                 gitUrlWithCreds="$(echo "${GIT_URL}" | sed -e 's!://!://'${GIT_USER}:${GIT_PASSWORD}'@!')"
                                 git tag "${RELEASE_NUMBER}" "${GIT_COMMIT}"
                                 git push "${gitUrlWithCreds}" "${RELEASE_NUMBER}"

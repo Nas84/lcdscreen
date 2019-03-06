@@ -89,7 +89,7 @@ pipeline {
                     unzip /tmp/v2.1.7.zip -d /usr/share
                 '''
                 //and run the test 
-                sh 'sh $WORKSPACE/test/system/sys_tests.sh'
+                sh 'sh $WORKSPACE/test/system/sys_test.sh'
                 
             }
         }
